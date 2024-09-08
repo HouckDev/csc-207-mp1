@@ -1,7 +1,7 @@
 package edu.grinnell.csc207.main;
 
 import java.io.PrintWriter;
-import java.util.HashMap; // import the HashMap class
+import java.util.HashMap; // import the HashMap class (my beloved)
 import edu.grinnell.csc207.util.CipherUtils;
 public class Cipher {
   public static void main(String[] args) {

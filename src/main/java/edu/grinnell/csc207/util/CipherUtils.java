@@ -2,20 +2,20 @@ package edu.grinnell.csc207.util;
 
 public class CipherUtils {
   private static int letter2int(char letter) {
-    return (int) letter; // return the ascii id of letter
+    return (int) letter - 97; // return the ascii id of letter
   }
 
   private static char int2letter(int i) {
-    return (char) i; // convert int to ascii
+    return (char) (i + 97); // convert int to ascii
   }
 
   // this could be done more cleanly, but it works
   private static char addLetters(char a, char b) {
-    return int2letter((((letter2int(a) - 97) + (letter2int(b) - 97)) % 26) + 97); // add ascii codes, wrap around alphabet
+    return int2letter(((letter2int(a) + letter2int(b)) + 26) % 26); // add ascii codes, wrap around alphabet
   }
 
   private static char subtractLetters(char a, char b) {
-    return int2letter((((letter2int(a) - 97) - (letter2int(b) - 97)) % 26) + 97); // add ascii codes, wrap around alphabet
+    return int2letter(((letter2int(a) - letter2int(b)) + 26) % 26); // add ascii codes, wrap around alphabet
   }
 
   public static String caesarEncrypt(String str, char letter) {
