@@ -2,6 +2,7 @@ package edu.grinnell.csc207.util;
 
 public class CipherUtils {
   private static int letter2int(char letter) {
+    
     return 0; // STUB
   }
 
