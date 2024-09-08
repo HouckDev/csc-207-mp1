@@ -2,15 +2,18 @@ package edu.grinnell.csc207.util;
 
 public class CipherUtils {
   private static int letter2int(char letter) {
-    
-    return 0; // STUB
+    return letter - '0'; // return the ascii id of letter
   }
 
-  private static int int2letter(int i) {
-    return 'a'; // STUB
+  private static char int2letter(int i) {
+    return (char) i; // convert int to ascii
   }
 
   public static String caesarEncrypt(String str, char letter) {
+    String newStr = "";
+    for (int i = 0; i < str.length(); i++) {
+      newStr = newStr + int2letter(letter2int(str.charAt(i)));
+    }
     return str; // STUB
   }
 

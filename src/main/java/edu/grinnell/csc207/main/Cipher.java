@@ -30,29 +30,32 @@ public class Cipher {
       for (int i = 0; i < args.length; i++) {
         pen.printf("args[%d] = \"%s\"\n", i, args[i]);
       }
-      pen.close();
-      
+      pen.printf("Success: Parameters valid\n");
+      pen.flush();
+
       // program flags validated, begin execution of program
-      PrintWriter penOutput = new PrintWriter(System.out, true);
       if (programFlags.containsKey("-encode")) {
         if (programFlags.containsKey("-caesar")) {
           // encrypt text with caesar cipher
-          penOutput.printf(CipherUtils.caesarEncrypt(programFlags.get("param_stringToEncode"),programFlags.get("param_encodingKey").charAt(0)));
+          pen.printf("Output: Encrypted " + programFlags.get("param_stringToEncode") + " with caesar cipher, key: " + programFlags.get("param_encodingKey") + "\n");
+          pen.printf(CipherUtils.caesarEncrypt(programFlags.get("param_stringToEncode"),programFlags.get("param_encodingKey").charAt(0)) + "\n");
         } else { // we know the '-vigenere' flag must be present
           // encrypt text with vigenere cipher
-          penOutput.printf(CipherUtils.vigenereEncrypt(programFlags.get("param_stringToEncode"),programFlags.get("param_encodingKey")));
+          pen.printf("Output: Encrypted " + programFlags.get("param_stringToEncode") + " with vigenere cipher, key: " + programFlags.get("param_encodingKey") + "\n");
+          pen.printf(CipherUtils.vigenereEncrypt(programFlags.get("param_stringToEncode"),programFlags.get("param_encodingKey")) + "\n");
         }
       } else { // we know the '-decode' flag must be present, begin decoding
         if (programFlags.containsKey("-caesar")) {
           // decrypt text with caesar cipher
-          penOutput.printf(CipherUtils.caesarDecrypt(programFlags.get("param_stringToEncode"),programFlags.get("param_encodingKey").charAt(0)));
+          pen.printf("Output: Decrypted " + programFlags.get("param_stringToEncode") + " with caesar cipher, key: " + programFlags.get("param_encodingKey") + "\n");
+          pen.printf(CipherUtils.caesarDecrypt(programFlags.get("param_stringToEncode"),programFlags.get("param_encodingKey").charAt(0)) + "\n");
         } else { // we know the '-vigenere' flag must be present
           // decrypt text with vigenere cipher
-          penOutput.printf(CipherUtils.vigenereDecrypt(programFlags.get("param_stringToEncode"),programFlags.get("param_encodingKey")));
+          pen.printf("Output: Decrypted " + programFlags.get("param_stringToEncode") + " with vigenere cipher, key: " + programFlags.get("param_encodingKey") + "\n");
+          pen.printf(CipherUtils.vigenereDecrypt(programFlags.get("param_stringToEncode"),programFlags.get("param_encodingKey") + "\n"));
         }
       }
-      
-      penOutput.close();
+      pen.close();
     } else {
       System.err.println("Error: Invalid parameters");
     }
