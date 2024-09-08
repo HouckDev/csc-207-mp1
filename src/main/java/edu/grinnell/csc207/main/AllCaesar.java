@@ -18,28 +18,37 @@ public class AllCaesar {
       } else if(!programFlags.containsKey("param_stringToEncode")) { // if the arguement is not a flag, and we haven't set the encoding parameter, set the encoding parameter
         programFlags.put("param_stringToEncode",args[i]);
       } else { // throw an error for too many arguements
-        System.err.println("Error: Too many parameters");
+        System.err.println("Error: Incorrect number of parameters");
+        return;
       }
     }
     // validate program flags
     if (
-      programFlags.containsKey("param_stringToEncode") && // check parameters
-      (programFlags.containsKey("encode") ^ programFlags.containsKey("decode")) // check desired result
+      !(
+        programFlags.containsKey("param_stringToEncode") && // check parameters
+        (programFlags.containsKey("encode") ^ programFlags.containsKey("decode")) // check desired result
+      )
     ) {
-      PrintWriter pen = new PrintWriter(System.out, true);
-      String str = programFlags.get("param_stringToEncode");
-      if (programFlags.containsKey("encode")) {
-        for (char ch = 'a'; ch <= 'z'; ch++) {
-          pen.printf("n = %c: %s\n", ch, CipherUtils.caesarEncrypt(str, ch));
-        }
-      } else { // assume we are decoding instead
-        for (char ch = 'a'; ch <= 'z'; ch++) {
-          pen.printf("n = %c: %s\n", ch, CipherUtils.caesarDecrypt(str, ch));
-        }
-      }
-      pen.close();
-    } else {
-      System.err.println("Error: Invalid parameters");
+      System.err.println("Error: Incorrect number of parameters");
+      return;
     }
+    // validate string parameters
+    String str = programFlags.get("param_stringToEncode");
+    if (!CipherUtils.isValidString(str)) {
+      System.err.println("Error: String is invalid");
+      return;
+    }
+
+    PrintWriter pen = new PrintWriter(System.out, true);
+    if (programFlags.containsKey("encode")) {
+      for (char ch = 'a'; ch <= 'z'; ch++) {
+        pen.printf("n = %c: %s\n", ch, CipherUtils.caesarEncrypt(str, ch));
+      }
+    } else { // assume we are decoding instead
+      for (char ch = 'a'; ch <= 'z'; ch++) {
+        pen.printf("n = %c: %s\n", ch, CipherUtils.caesarDecrypt(str, ch));
+      }
+    }
+    pen.close();
   }
 }

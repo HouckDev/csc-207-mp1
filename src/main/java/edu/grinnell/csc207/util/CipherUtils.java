@@ -41,4 +41,13 @@ public class CipherUtils {
   public static String vigenereDecrypt(String str, String key) {
     return str;
   }
+
+  public static boolean isValidString(String str) {
+    for(int i=0;i < str.length();i++) {
+      if (Character.isUpperCase( str.charAt(i))) {
+         return false;
+      } 
+    }
+    return true;
+  }
 }
