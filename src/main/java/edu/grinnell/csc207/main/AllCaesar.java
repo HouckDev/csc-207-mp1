@@ -21,7 +21,8 @@ public class AllCaesar {
         System.err.println("Error: Incorrect number of parameters");
         return;
       }
-    }
+    } // for args.length
+
     // validate program flags
     if (
       !(
@@ -32,6 +33,7 @@ public class AllCaesar {
       System.err.println("Error: Incorrect number of parameters");
       return;
     }
+
     // validate string parameters
     String str = programFlags.get("param_stringToEncode");
     if (!CipherUtils.isValidString(str)) {
@@ -50,5 +52,5 @@ public class AllCaesar {
       }
     }
     pen.close();
-  }
-}
+  } // main
+} // class allCaesar

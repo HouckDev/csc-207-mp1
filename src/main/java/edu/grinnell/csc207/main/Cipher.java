@@ -18,7 +18,8 @@ public class Cipher {
       } else { // throw an error for too many arguements
         System.err.println("Error: Too many parameters");
       }
-    }
+    } // for args
+
     // validate program flags
     if (
       !(
@@ -34,7 +35,7 @@ public class Cipher {
     PrintWriter pen = new PrintWriter(System.out, true);
     for (int i = 0; i < args.length; i++) {
       pen.printf("args[%d] = \"%s\"\n", i, args[i]);
-    }
+    } // for args
     pen.printf("Success: Parameters valid\n");
     pen.flush();
 
@@ -68,5 +69,5 @@ public class Cipher {
       }
     }
     pen.close();
-  }
-}
+  } // class main
+} // class Cipher
