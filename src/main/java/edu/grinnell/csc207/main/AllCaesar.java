@@ -7,16 +7,19 @@ import edu.grinnell.csc207.util.CipherUtils;
 
 public class AllCaesar {
   public static void main(String[] args) {
-    //initialize program flags
+    // initialize program flags
     HashMap<String, String> programFlags = new HashMap<String, String>();
 
     for (int i = 0; i < args.length; i++) {
       if (args[i].equals("encode")) { // check if this arguement is a flag "encode"
-        programFlags.put(args[i],"true");
+        programFlags.put(args[i], "true");
       } else if (args[i].equals("decode")) { // check if this arguement is a flag "decode"
-          programFlags.put(args[i],"true");
-      } else if(!programFlags.containsKey("param_stringToEncode")) { // if the arguement is not a flag, and we haven't set the encoding parameter, set the encoding parameter
-        programFlags.put("param_stringToEncode",args[i]);
+        programFlags.put(args[i], "true");
+      } else if (!programFlags.containsKey("param_stringToEncode")) { // if the arguement is not a
+                                                                      // flag, and we haven't set
+                                                                      // the encoding parameter, set
+                                                                      // the encoding parameter
+        programFlags.put("param_stringToEncode", args[i]);
       } else { // throw an error for too many arguements
         System.err.println("Error: Incorrect number of parameters");
         return;
@@ -24,12 +27,10 @@ public class AllCaesar {
     } // for args.length
 
     // validate program flags
-    if (
-      !(
-        programFlags.containsKey("param_stringToEncode") && // check parameters
-        (programFlags.containsKey("encode") ^ programFlags.containsKey("decode")) // check desired result
-      )
-    ) {
+    if (!(programFlags.containsKey("param_stringToEncode") && // check parameters
+        (programFlags.containsKey("encode") ^ programFlags.containsKey("decode")) // check desired
+                                                                                  // result
+    )) {
       System.err.println("Error: Incorrect number of parameters");
       return;
     }
