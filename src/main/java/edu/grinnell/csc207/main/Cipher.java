@@ -17,6 +17,7 @@ public class Cipher {
         programFlags.put("param_encodingKey",args[i]);
       } else { // throw an error for too many arguements
         System.err.println("Error: Too many parameters");
+        return;
       }
     } // for args
 
