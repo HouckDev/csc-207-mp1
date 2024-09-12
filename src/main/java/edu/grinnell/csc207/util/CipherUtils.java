@@ -35,16 +35,24 @@ public class CipherUtils {
   }
 
   public static String vigenereEncrypt(String str, String key) {
-    return str; // STUB
+    String newStr = "";
+    for (int i = 0; i < str.length(); i++) {
+      newStr = newStr + addLetters(str.charAt(i), key.charAt(i % (key.length()))); // mathmatically add current letter and key letter, add to working string
+    }
+    return newStr;
   }
 
   public static String vigenereDecrypt(String str, String key) {
-    return str;
+    String newStr = "";
+    for (int i = 0; i < str.length(); i++) {
+      newStr = newStr + subtractLetters(str.charAt(i), key.charAt(i % (key.length()))); // mathmatically add current letter and key letter, add to working string
+    }
+    return newStr;
   }
 
   public static boolean isValidString(String str) {
     for(int i=0;i < str.length();i++) {
-      if (Character.isUpperCase( str.charAt(i))) {
+      if (Character.isUpperCase( str.charAt(i)) || Character.isWhitespace( str.charAt(i))) {
          return false;
       } 
     }
