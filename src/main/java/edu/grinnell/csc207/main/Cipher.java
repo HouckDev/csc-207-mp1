@@ -12,7 +12,7 @@ public class Cipher {
     for (int i = 0; i < args.length; i++) {
       if (args[i].isEmpty()) {
         continue;
-      }
+      } // if
       ; // skip empty args
       if (args[i].charAt(0) == '-') { // check if this arguement is a flag
         programFlags.put(args[i], "true");
@@ -29,7 +29,7 @@ public class Cipher {
       } else { // throw an error for too many arguements
         System.err.println("Error: Too many parameters");
         return;
-      }
+      } // if
     } // for args
 
     // validate program flags
@@ -45,7 +45,7 @@ public class Cipher {
     )) {
       System.err.println("Error: Invalid parameters");
       return;
-    }
+    } // if
     // // print program flags out
     // for (int i = 0; i < args.length; i++) {
     // System.err.printf("args[%d] = \"%s\"\n", i, args[i]);
@@ -57,18 +57,16 @@ public class Cipher {
     if (!CipherUtils.isValidString(programFlags.get("param_stringToEncode"))) {
       System.err.println("Error: Invalid Encoding String");
       return;
-    }
+    } // if
     if (!CipherUtils.isValidString(programFlags.get("param_encodingKey"))) {
       System.err.println("Error: Invalid Key");
       return;
-    }
+    } // if
     // test cipher method specific requirements
-    if (programFlags.containsKey("-caesar")) {
-      if (programFlags.get("param_encodingKey").length() != 1) {
-        System.err.println("Error: Invalid Key");
-        return;
-      }
-    }
+    if (programFlags.containsKey("-caesar") && programFlags.get("param_encodingKey").length() != 1) {
+      System.err.println("Error: Invalid Key");
+      return;
+    } // if
 
     // program flags validated, begin execution of program
     PrintWriter pen = new PrintWriter(System.out, true);
@@ -89,7 +87,7 @@ public class Cipher {
         // "\n");
         pen.printf(CipherUtils.vigenereEncrypt(programFlags.get("param_stringToEncode"),
             programFlags.get("param_encodingKey")) + "\n");
-      }
+      } // if
     } else { // we know the '-decode' flag must be present, begin decoding
       if (programFlags.containsKey("-caesar")) {
         // decrypt text with caesar cipher
@@ -107,8 +105,8 @@ public class Cipher {
         // "\n");
         pen.printf(CipherUtils.vigenereDecrypt(programFlags.get("param_stringToEncode"),
             programFlags.get("param_encodingKey")) + "\n");
-      }
-    }
+      } // if
+    } // if
     pen.close();
-  } // class main
-} // class Cipher
+  } // main
+} // Cipher

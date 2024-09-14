@@ -23,7 +23,7 @@ public class AllCaesar {
       } else { // throw an error for too many arguements
         System.err.println("Error: Incorrect number of parameters");
         return;
-      }
+      } // if
     } // for args.length
 
     // validate program flags
@@ -33,14 +33,14 @@ public class AllCaesar {
     )) {
       System.err.println("Error: Incorrect number of parameters");
       return;
-    }
+    } // if
 
     // validate string parameters
     String str = programFlags.get("param_stringToEncode");
     if (!CipherUtils.isValidString(str)) {
       System.err.println("Error: String is invalid");
       return;
-    }
+    } // if
 
     PrintWriter pen = new PrintWriter(System.out, true);
     if (programFlags.containsKey("encode")) {
@@ -51,7 +51,7 @@ public class AllCaesar {
       for (char ch = 'a'; ch <= 'z'; ch++) {
         pen.printf("n = %c: %s\n", ch, CipherUtils.caesarDecrypt(str, ch));
       }
-    }
+    } // if
     pen.close();
   } // main
-} // class allCaesar
+} // AllCaesar
